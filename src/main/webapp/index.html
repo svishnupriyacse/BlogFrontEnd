@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS User Registration and Login Example</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <style>
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 100%;
+	margin: auto;
+	height: 300px;
+}
+.h3{
+	padding: 5px;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+ 
+.body_container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+ 
+.clear {
+    clear: both;
+}
+ 
+.green {
+    color: #8aaf0d;
+}
+ 
+#header {
+    margin: 0 auto;
+    padding: 50px 0;
+    text-align: center;
+}
+ 
+#header h1,#header p.online_count {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+ 
+#header p.online_count {
+    font-size: 18px;
+    display: none;
+}
+ 
+.box_shadow {
+    background: #f3f4f6;
+    border: 1px solid #e4e4e4;
+    -moz-box-shadow: 0px 0px 2px 1px #e5e5e5;
+    -webkit-box-shadow: 0px 0px 2px 1px #e5e5e5;
+    box-shadow: 0px 0px 2px 1px #e5e5e5;
+}
+ 
+#prompt_name_container {
+    margin: 0 auto;
+    width: 350px;
+    text-align: center;
+}
+ 
+#prompt_name_container p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: #5e5e5e;
+}
+ 
+#prompt_name_container #input_name {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    width: 250px;
+    display: block;
+    margin: 0 auto;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+}
+ 
+#prompt_name_container #btn_join {
+    border: none;
+    width: 100px;
+    display: block;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background: #96be0e;
+    font-size: 18px;
+    padding: 5px 20px;
+    margin: 15px auto;
+    cursor: pointer;
+}
+ 
+#message_container {
+    display: none;
+    width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 15px 0 0 0;
+}
+ 
+#messages {
+    margin: 0;
+    padding: 0;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+ 
+#messages li {
+    list-style: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+ 
+#messages li.new,#messages li.exit {
+    font-style: italic;
+    color: #bbbbbb;
+}
+ 
+#messages li span.name {
+    color: #8aaf0d;
+}
+ 
+#messages li span.red {
+    color: #e94e59;
+}
+ 
+#input_message_container {
+    margin: 40px 20px 0 20px;
+}
+ 
+#input_message {
+    background: #f0f0f0;
+    border: none;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    padding: 10px;
+    float: left;
+    margin: 0;
+    width: 348px;
+}
+ 
+#btn_send {
+    float: left;
+    margin: 0;
+    border: none;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    background: #96be0e;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+ 
+#btn_close {
+    margin: 0;
+    border: none;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    background: #e94e59;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin: 30px 0 0 0;
+}
+
+.list-content{
+ min-height:300px;
+}
+.list-content .list-group .title{
+  background:#5bc0de;
+  border:2px solid #DDDDDD;
+  font-weight:bold;
+  color:#FFFFFF;
+}
+.list-group-item img {
+    height:80px; 
+    width:80px;
+}
+
+.jumbotron .btn {
+    padding: 5px 5px !important;
+    font-size: 12px !important;
+}
+.prj-name {
+    color:#5bc0de;    
+}
+.break{
+    width:100%;
+    margin:20px;
+}
+.name {
+    color:#5bc0de;    
+}
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#search {
+    float: right;
+    margin-top: 9px;
+    width: 250px;
+}
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: right;
+    line-height: 22px;
+}
+
+    .search input {
+        position: absolute;
+        width: 0px;
+        float: Left;
+        margin-left: 210px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0 3px 0 3px;
+        border-radius:1px;
+    }
+
+        .search:hover input, .search input:focus {
+            width: 200px;
+            margin-left: 0px;
+        }
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+.panel-shadow {
+    box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
+.panel-white {
+  border: 1px solid #dddddd;
+}
+.panel-white  .panel-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.panel-white  .panel-footer {
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+.post .post-heading {
+  height: 95px;
+  padding: 20px 15px;
+}
+.post .post-heading .avatar {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin-right: 15px;
+}
+.post .post-heading .meta .title {
+  margin-bottom: 0;
+}
+.post .post-heading .meta .title a {
+  color: black;
+}
+.post .post-heading .meta .title a:hover {
+  color: #aaaaaa;
+}
+.post .post-heading .meta .time {
+  margin-top: 8px;
+  color: #999;
+}
+.post .post-image .image {
+  width: 100%;
+  height: auto;
+}
+.post .post-description {
+  padding: 15px;
+}
+.post .post-description p {
+  font-size: 14px;
+}
+.post .post-description .stats {
+  margin-top: 20px;
+}
+.post .post-description .stats .stat-item {
+  display: inline-block;
+  margin-right: 15px;
+}
+.post .post-description .stats .stat-item .icon {
+  margin-right: 8px;
+}
+.post .post-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px;
+}
+.post .post-footer .input-group-addon a {
+  color: #454545;
+}
+.post .post-footer .comments-list {
+  padding: 0;
+  margin-top: 20px;
+  list-style-type: none;
+}
+.post .post-footer .comments-list .comment {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+.post .post-footer .comments-list .comment .avatar {
+  width: 35px;
+  height: 35px;
+}
+.post .post-footer .comments-list .comment .comment-heading {
+  display: block;
+  width: 100%;
+}
+.post .post-footer .comments-list .comment .comment-heading .user {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline;
+  margin-top: 0;
+  margin-right: 10px;
+}
+.post .post-footer .comments-list .comment .comment-heading .time {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 0;
+  display: inline;
+}
+.post .post-footer .comments-list .comment .comment-body {
+  margin-left: 50px;
+}
+.post .post-footer .comments-list .comment > .comments-list {
+  margin-left: 50px;
+}
+
+/* required for sticky footer */
+html, body {
+	height: 100%;
+}
+div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+.nav {
+	list-style: none;
+}
+.nav li {
+	display: inline-block;
+}
+
+footer {
+	margin-bottom: 0px;
+}
+.blog
+{
+padding: 4px !important;
+}
+</style>
+</head>
+<body>
+
+    <div class="jumbotron" style="padding-bottom: inherit;
+    padding-top: inherit;">
+		<nav class="navbar navbar-primary">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">WebSiteName</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#/home">Home</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="">Blog <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/blog">Create Blog</a></li>
+							<li><a href="#/viewblog">View Blog</a></li>
+						</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="">Forum<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/forum">Create Forum</a></li>
+							<li><a href="#/viewforum">View Forum</a></li>
+						</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="">Job Oppurtunities<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/job">Create Job</a></li>
+							<li><a href="#/viewjob">View Job</a></li>
+						</ul>
+						</li>
+					<li><a href="#/gallery">Gallery</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="">Events<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/event">Create Event</a></li>
+							<li><a href="#/viewevents">View Event</a></li>
+						</ul>
+						</li>
+				</ul>
+				<div class="container">
+	<div class="row">
+        <div class="search">
+<input type="text" class="form-control input-sm" maxlength="64" placeholder="Search" />
+ <button style="margin-left:225px" type="submit" class="btn btn-primary btn-sm">Search</button>
+</div>
+<a href="#/login" class="btn btn-primary">{{logout}}</a>
+	</div>
+</div>
+			</div>
+		</div>
+</nav>
+
+ </div> </div>
+    
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+            </div>
+        </div>
+   
+    
+
+   <div ng-view></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <script src="js/Service/AuthenticationService.js"></script>
+    <script src="js/Service/FlashService.js"></script>
+
+    <!-- Real user service that uses an api -->
+    <!-- <script src="app-services/user.service.js"></script> -->
+
+    <!-- Fake user service for demo that uses local storage -->
+    <script src="js/Service/UserService.js"></script>
+    <script src="js/Service/JobService.js"></script>
+     <script src="js/Service/BlogService.js"></script>
+      <script src="js/Service/ForumService.js"></script>
+       <script src="js/Service/FriendService.js"></script>
+    
+	 <script src="js/Controller/ForumController.js"></script>
+	 <script src="js/Controller/FriendController.js"></script>
+    <script src="js/Controller/HomeController.js"></script>
+    <script src="js/Controller/LoginController.js"></script>
+    <script src="js/Controller/RegisterController.js"></script>
+    <script src="js/Controller/JobController.js"></script>
+    <script src="js/Controller/BlogController.js"></script>
+</body>
+</html>

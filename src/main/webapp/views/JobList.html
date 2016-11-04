@@ -1,0 +1,112 @@
+<h1>List of Available Jobs</h1>
+<div class="generic-container">
+<form ng-submit="jobs.submit()" name="myForm" class="form-horizontal">
+     					<input type="hidden" ng-model="jobs.job.jobId" />
+     					<div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="jname">JobName</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.jobName" name="jname" id="jname" class="username form-control input-sm" placeholder="Enter Job name" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.jname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.jname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="cname">companyName</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.companyName" name="cname" id="cname" class="username form-control input-sm" placeholder="Enter Company name" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.cname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.cname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="dname">designation</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.designation" name="dname" id="des" class="username form-control input-sm" placeholder="Designation" required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.dname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.dname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="location">location</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.location" name="location" id="des" class="username form-control input-sm" placeholder="Enter Location" required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.location.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.location.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="texp">Needed Skill Set:</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.technologiesExpected" name="texp" id="TE" class="username form-control input-sm" placeholder="Enter Skill set" required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.texp.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.texp.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="address">address</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="jobs.job.address"  name="addr" id="TE" class="username form-control input-sm" placeholder="Enter Skill set" required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.addr.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.addr.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                       <div class="row">
+                          <div class="form-actions floatLeft">
+                              <input type="submit"  value="{{!jobs.job.jobId? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="jobs.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                          </div>
+                      </div>
+</form>
+<table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Job Id</th>
+                              <th>Job Name</th>
+                              <th>Company name</th>
+                              <th>designation</th>
+                              <th>location:</th>
+                              <th>Skill set</th>
+                              <th>Address:</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in jobs.jobs">
+                              <td><span ng-bind="u.jobId"></span></td>
+                              <td><span ng-bind="u.jobName"></span></td>
+                              <td><span ng-bind="u.companyName"></span></td>
+                              <td><span ng-bind="u.designation"></span></td>
+                              <td><span ng-bind="u.location"></span></td>
+                              <td><span ng-bind="u.technologiesExpected"></span></td>
+                              <td><span ng-bind="u.address"></span></td>
+                              <td>
+                              <button type="button" ng-click="jobs.edit(u.jobId)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="jobs.remove(u.jobId)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+</div>

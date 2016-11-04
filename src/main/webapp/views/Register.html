@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body  class="ng-cloak">
+<div class="generic-container" ng-controller="RegisterController">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<form ng-submit="vm.register()" name="myForm" class="form-horizontal">
+
+                      <input type="hidden" ng-model="vm.user.user_id" />
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="uname">UserName</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.user.userName" id="uname" class="username form-control input-sm" placeholder="Enter your name" required ng-minlength="3"/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.uname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
+                                      <span ng-show="myForm.uname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="typeOfUser">Type of user</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.user.type_of_user" id="usertype" class="form-control input-sm" placeholder="Enter your Address. [This field is validation free]"/>
+                              </div>
+                          </div>
+                      </div>
+ 
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="email">Email</label>
+                              <div class="col-md-7">
+                                  <input type="email" ng-model="vm.user.email_id" id="email" class="email form-control input-sm" placeholder="Enter your Email" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.email.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.email.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                       <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="email">Phone Number:</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.user.phone_no" id="phone no" class="email form-control input-sm" placeholder="Enter your Email" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.email.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.email.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="email">Password</label>
+                              <div class="col-md-7">
+                                  <input type="password" ng-model="vm.user.password" id="phone no" class="email form-control input-sm" placeholder="Enter your Email" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.email.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.email.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+ 
+                      <div class="row">
+                          <div class="form-actions floatLeft">
+                              <input type="submit"  value="{{!vm.user.user_id? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                               <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                              <button type="button" ng-click="vm.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                          </div>
+                      </div>
+                  </form>
+</div>
+</div>
+</div>
+</body>
+</html>

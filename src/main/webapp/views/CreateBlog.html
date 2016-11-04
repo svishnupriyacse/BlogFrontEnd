@@ -1,0 +1,81 @@
+<form ng-submit="vm.submit()" name="myForm" class="form-horizontal">
+     					<input type="hidden" ng-model="vm.blog.blogId" />
+     					<div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="bname">Blog Name</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.blog.blogName" name="bname" id="bname" class="username form-control input-sm" placeholder="Enter blog name" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.bname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.bname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="dname">Blog Description</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.blog.Description" name="dname" id="dname" class="username form-control input-sm" placeholder="Enter Blog Description" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.dname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.dname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="uname">Author mail-id</label>
+                              <div class="col-md-7">
+                                  <input type="email" ng-model="vm.blog.userId" name="uname" id="uname" class="username form-control input-sm" placeholder="Enter User mail id" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.uname.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.uname.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="content">Blog Description</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="vm.blog.content" name="content" id="content" class="username form-control input-sm" placeholder="Enter content" ng-required />
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.content.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.content.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-actions floatLeft">
+                              <input type="submit"  value="{{!vm.blog.blogId? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="vm.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                          </div>
+                      </div>
+                      </form>
+                      <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Blog Id:</th>
+                              <th>Blog Name:</th>
+                              <th>content</th>
+                              <th>Description</th>
+                              <th>Author:</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in vm.blogs">
+                              <td><span ng-bind="u.blogId"></span></td>
+                              <td><span ng-bind="u.blogName"></span></td>
+                              <td><span ng-bind="u.content"></span></td>
+                              <td><span ng-bind="u.Description"></span></td>
+                              <td><span ng-bind="u.userId"></span></td>
+           						<td>
+                              <button type="button" ng-click="blog.edit(u.blogId)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="blog.remove(u.blogId)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>

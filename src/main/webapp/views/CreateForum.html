@@ -1,0 +1,26 @@
+<div class="col-sm-4 well">
+    <form accept-charset="UTF-8" action="" ng-submit="vm.submit()" method="POST">
+        <input type="hidden" ng-model="vm.forum.forumid" />
+  <input type="hidden" ng-model="vm.forum.creationdate" />
+        <div class="form-group">
+									<label for="userEmail">Forum title</label>
+									<input type="text" ng-model="vm.forum.forum_title"class="form-control" required="" name="userEmail" value="">
+								</div>
+								
+        
+        <textarea style="resize:none" ng-model="vm.forum.forum_content" class="form-control" id="text" name="text" placeholder="Forum Content" rows="5"></textarea>
+        <h6 class="pull-right" id="count_message"></h6>
+        <input class="btn btn-info" type="submit">Create Forum</button>
+    </form>
+</div>
+<script>
+var text_max = 300;
+$('#count_message').html(text_max + ' remaining');
+
+$('#text').keyup(function() {
+  var text_length = $('#text').val().length;
+  var text_remaining = text_max - text_length;
+  
+  $('#count_message').html(text_remaining + ' remaining');
+});
+</script>

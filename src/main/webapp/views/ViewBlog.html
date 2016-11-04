@@ -1,0 +1,18 @@
+ <center>
+	<div class="col-sm-12" ng-repeat="u in blog.blogs">
+
+
+
+
+		{{u.blogName}}</h1>
+		
+			{{u.content}} created by
+			<h6>
+				<b>{{u.userId}}</b>
+			</h6>
+			  <button type="button" ng-click="blog.edit(u.blogId);" class="btn btn-success custom-width">Edit</button>
+		</div>
+
+
+
+</center>

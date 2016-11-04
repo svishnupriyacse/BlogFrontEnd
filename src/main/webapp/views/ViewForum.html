@@ -1,0 +1,23 @@
+<table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>forum id</th>
+                              <th>forum title:</th>
+                              <th>content</th>
+                              <th>date</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="um in vm.forums">
+                              <td><span ng-bind="um.forumid"></span></td>
+                              <td><span ng-bind="um.forum_title"></span></td>
+                              <td><span ng-bind="um.forum_content"></span></td>
+                              <td><span ng-bind="um.creationdate"></span></td>
+                              
+           						<td>
+                              <button type="button" ng-click="" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
