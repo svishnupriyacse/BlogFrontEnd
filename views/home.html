@@ -1,0 +1,139 @@
+<div class="container-fluid" ng-app="myApp">
+	<div class="row" >
+	<p style="float:right;">
+	<button  type="button" class="btn btn-btn success" ng-click="vm.logout()">Logout</button>
+</p>
+<h1>Hi {{vm.user.userName}}!</h1>
+<p>You're logged in!adsfasdfasdf!</p>
+
+<div >
+  
+ 
+    <a href="#/chat" class="btn btn-info" role="button">start chat</a>
+  
+</div>
+</div>
+<div ng-controller="JobController as j">
+	<div class="row">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12" style="margin-top: 20px;">
+			<div class="row">
+				<div class="col-md-4">
+				<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+        
+            <!-- Begin fluid width widget -->
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <h3 class="panel-title h3">
+                        <span class="glyphicon glyphicon-list-alt blog"></span>Recent Jobs
+                    </h3>
+                </div>
+                <div class="panel-body" ng-repeat="u in j.jobs" >
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-body" >
+                                <h4 class="media-heading" >
+                                                <a href="#/viewjob" class="text-info">
+                                                  {{u.jobName}}
+                                                </a>
+                                            </h4>
+                                <p class="margin-top-10 margin-bottom-20">
+                                   {{u.companyName}}<br>{{u.location}}
+                                </p>
+                            </div>
+                        </li>
+                       
+                    </ul>
+                    
+                </div>
+                <a href="#/viewjobs" class="btn btn-default btn-block">More Blog Posts-></a>
+            </div>
+          
+            <!-- End fluid width widget -->
+            
+        </div>
+	</div>
+</div>
+				</div>
+				<div class="col-md-4" ng-controller="BlogController as b">
+				<div class="container">
+	<div class="row" >
+		<div class="col-md-3">
+        
+            <!-- Begin fluid width widget -->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-list-alt"></span>Recent Blogs
+                    </h3>
+                </div>
+                <div class="panel-body" ng-repeat="u in b.blogs">
+                    <ul class="media-list" >
+                        <li class="media" >
+                        <div >
+                            <div class="media-body" >
+                                <h4 class="media-heading">
+                                                <a href="#/viewblog" class="text-info">
+                                                    {{u.blogName}}
+                                                </a>
+                                            </h4>
+                                <p class="margin-top-10 margin-bottom-20">
+                                    {{u.content}}
+                                </p>
+                               
+                            </div>
+                        </li>
+                       </div>
+                    </ul>
+                    <a href="#/viewblog" class="btn btn-default btn-block">More Blog Posts-></a>
+                </div>
+            </div>
+            <!-- End fluid width widget -->
+            
+        </div>
+	</div>
+</div>
+				</div>
+				<div class="col-md-4" ng-controller="ForumController as f"> 
+				<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+        
+            <!-- Begin fluid width widget -->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-list-alt"></span>Recent Forums
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list" ng-repeat="u in f.forums">
+                        <li class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                                    {{u.forum_title}}
+                                            </h4>
+                                <p class="margin-top-10 margin-bottom-20">
+                                   created on : {{u.creationdate}}
+                                  
+                                </p>
+                            </div>
+                        </li>
+                       
+                    </ul>
+                    <a href="#/viewforum" class="btn btn-default btn-block">More Blog Posts-></a>
+                </div>
+            </div>
+           
+            
+        </div>
+	</div>
+</div>
+</div>
+  </div>
+  <script src="js/Service/FriendService.js"></script>
+    
+	 <script src="js/Controller/ForumController.js"></script>
