@@ -1,0 +1,36 @@
+<div class="container">
+<div class="row">
+  <div class="span12" ng-repeat="u in vm.forums">
+    <div class="row">
+      <div class="span8">
+        <h4><strong><a href="#">{{u.forum_title}}</a></strong></h4>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="span2">
+        <a href="#" class="thumbnail">
+            <img src="http://placehold.it/260x180" alt="">
+        </a>
+      </div>
+      <div class="span10">      
+        
+        <p>{{u.forum_content}}</p>
+        <p><button type="button" class="btn" ng-click="vm.get(u)">Read more</button></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p>
+          <i class="icon-user"></i> by <a href="#">John</a> 
+          | <i class="icon-calendar"></i> {{u.creationdate}}
+          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+          | <i class="icon-share"></i> <a href="#">39 Shares</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+</div>

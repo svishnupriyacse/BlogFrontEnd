@@ -1,0 +1,86 @@
+ <div style="margin:100px 10px 100px 100px">
+  <div class="span12">
+    <div class="row">
+      <div class="span8">
+        <h4><strong><a href="#">{{forum.forum_title}}</a></strong></h4>
+      </div>
+    </div>
+
+      <div class="span10">      
+        <p>{{forum.forum_content}}</p>
+     
+       
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p>
+          <i class="icon-user"></i> by <a href="#">John</a> 
+          | <i class="icon-calendar"></i> {{forum.creationdate}}
+          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+          | <i class="icon-share"></i> <a href="#">39 Shares</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" ng-controller="CommentController as cm">
+
+<div class="row" ng-repeat="u in cm.comments">
+
+<!-- /col-sm-5 -->
+
+<div class="col-sm-1" >
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-5">
+<div class="panel panel-default" >
+<div class="panel-heading">
+<strong>{{u.userId}}</strong> <span class="text-muted">commented 5 days ago</span>
+</div>
+<div class="panel-body">
+{{u.commends}}
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+</div><!-- /row -->
+
+<!-- /container -->
+   <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<div class="container">
+	<div class="row">
+		<h3>Comments:</h3>
+	</div>
+    
+    <div class="row">
+    
+    <div class="col-md-6">
+    						<div class="widget-area no-padding blank">
+								<div class="status-upload">
+								
+								
+									<form>
+									<input type="hidden" ng-model="cm.userId">
+										<input type="hidden" ng-model="cm.serialNo">
+										<input type="hidden" ng-model="cm.eventId" value="{{blog.blogId}}">
+										<textarea placeholder="What are you doing right now?" ng-model="cm.comment.commends" ></textarea>
+										<ul>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+										</ul>
+										<button type="button"  ng-click="cm.submit()" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+									</form>
+								</div><!-- Status Upload  -->
+							</div><!-- Widget Area -->
+						</div>
+        
+    </div>
+</div>
+</div>
